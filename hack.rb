@@ -1,10 +1,19 @@
 require 'sonos'
+require 'json'
+require 'rest-client'
 
-system = Sonos::System.new
-speaker = system.speakers.first
+while (true)
+  system = Sonos::System.new
+  speaker = system.speakers.first
 
-speaker.play 'http://dl.dropbox.com/u/7845229/Pop.mp3'
-speaker.play
+  search = RestClient.get "http://search.twitter.com/search.json?q=%23playonmysonos"
+  json = JSON.parse(search)
 
+  url = json["results"].first["text"][/http[^\s]+/]
+  actual_url = RestClient.get("http://therealurl.appspot.com/?url=#{url}")
 
-http://search.twitter.com/search.json?q=%23badboy
+  speaker.play actual_url
+  speaker.play
+  
+  sleep 60
+end

@@ -10,9 +10,12 @@ GEM
     httpi (2.0.2)
       rack
     json (1.7.6)
+    mime-types (1.20.1)
     nokogiri (1.5.6)
     nori (2.0.3)
     rack (1.5.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     savon (2.0.3)
       akami (~> 1.2.0)
       builder (>= 2.1.2)
@@ -35,4 +38,5 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  rest-client
   sonos
